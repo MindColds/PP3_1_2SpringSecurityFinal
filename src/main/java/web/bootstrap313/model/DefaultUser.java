@@ -20,9 +20,9 @@ public class DefaultUser {
 
     @PostConstruct
     private void initialize() {
-        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role adminRole = new Role("ROLE_ADMIN");
         Role userRole = new Role("ROLE_USER");
-        roleService.saveRole(roleAdmin);
+        roleService.saveRole(adminRole);
         roleService.saveRole(userRole);
         User admin = new User();
         admin.setName("Admin");
@@ -30,7 +30,7 @@ public class DefaultUser {
         admin.setAge(41);
         admin.setEmail("admin@mail.ru");
         admin.setPassword("admin");
-        admin.addRole(roleAdmin);
+        admin.addRole(adminRole);
         admin.addRole(userRole);
         userService.add(admin);
     }
