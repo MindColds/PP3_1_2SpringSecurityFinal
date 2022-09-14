@@ -1,8 +1,8 @@
-package web.bootstrap313.repository;
+package web.springsecurity312.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.bootstrap313.model.Role;
+import web.springsecurity312.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-@Transactional
 public class RoleDaoImpl implements RoleDao {
 
     @PersistenceContext

@@ -1,4 +1,4 @@
-package web.bootstrap313.configs;
+package web.springsecurity312.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

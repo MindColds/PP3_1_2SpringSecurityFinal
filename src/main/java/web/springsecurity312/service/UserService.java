@@ -1,20 +1,20 @@
-package web.bootstrap313.service;
+package web.springsecurity312.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import web.bootstrap313.model.User;
+import web.springsecurity312.model.User;
 
 import java.util.List;
 
 public interface UserService extends UserDetailsService {
-    void add(User user);
+    void addUser(User user);
 
     User getUserById(Long id);
 
-    void delete(Long id);
+    void deleteUser(Long id);
 
-    void update(User user, Long id);
+    void updateUser(User user, Long id);
 
     List<User> getAllUsers();
 
-    User getUserByEmail(String email);
+    User getUserByUsername(String username);
 }

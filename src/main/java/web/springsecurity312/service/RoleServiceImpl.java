@@ -1,10 +1,10 @@
-package web.bootstrap313.service;
+package web.springsecurity312.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.bootstrap313.model.Role;
-import web.bootstrap313.repository.RoleDao;
+import web.springsecurity312.model.Role;
+import web.springsecurity312.repository.RoleDao;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public Set<Role> getByName(String name) {
+    public Set<Role> getRoleByName(String name) {
         Set<Role> roles = new HashSet<>();
         for (Role role : getAllRoles()) {
             if (name.contains(role.getName())) {

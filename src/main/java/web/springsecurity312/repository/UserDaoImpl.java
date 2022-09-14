@@ -1,7 +1,7 @@
-package web.bootstrap313.repository;
+package web.springsecurity312.repository;
 
 import org.springframework.stereotype.Repository;
-import web.bootstrap313.model.User;
+import web.springsecurity312.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void create(User user) {
+    public void createUser(User user) {
         entityManager.persist(user);
     }
 
@@ -30,21 +30,21 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteUser(Long id) {
         entityManager.createQuery("delete from User user where user.id = :id")
                 .setParameter("id", id)
                 .executeUpdate();
     }
 
     @Override
-    public void update(User user) {
+    public void updateUser(User user) {
         entityManager.merge(user);
     }
 
     @Override
-    public User findByEmail(String email) {
-        return entityManager.createQuery("select u from User u join fetch u.roles where u.email = :email", User.class)
-                .setParameter("email", email)
+    public User findByUsername(String username) {
+        return entityManager.createQuery("select u from User u join fetch u.roles where u.username = :username", User.class)
+                .setParameter("username", username)
                 .getSingleResult();
     }
 }

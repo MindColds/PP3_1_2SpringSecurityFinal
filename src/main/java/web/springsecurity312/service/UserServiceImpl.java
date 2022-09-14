@@ -1,4 +1,4 @@
-package web.bootstrap313.service;
+package web.springsecurity312.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.bootstrap313.model.User;
-import web.bootstrap313.repository.UserDao;
+import web.springsecurity312.model.User;
+import web.springsecurity312.repository.UserDao;
 
 import java.util.List;
 
@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void add(User user) {
+    public void addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userDao.create(user);
+        userDao.createUser(user);
     }
 
     @Override
@@ -37,17 +37,23 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void delete(Long id) {
-        userDao.delete(id);
+    public void deleteUser(Long id) {
+        userDao.deleteUser(id);
     }
 
     @Override
     @Transactional
-    public void update(User user, Long id) {
-        user.setId(id);
-        user.setPassword(user.getPassword() != null && !user.getPassword().trim().equals("") ?
-                bCryptPasswordEncoder.encode(user.getPassword()) : userDao.getUserById(id).getPassword());
-        user.setEmail(userDao.getUserById(id).getUsername());
+    public void updateUser(User user, Long id) {
+        User userToBeUpdated = userDao.getUserById(user.getId());
+        userToBeUpdated.setUsername(user.getUsername());
+        userToBeUpdated.setName(user.getName());
+        userToBeUpdated.setPatronim(user.getPatronim());
+        userToBeUpdated.setSurname(user.getSurname());
+        userToBeUpdated.setAge(user.getAge());
+        userToBeUpdated.setEmail(user.getEmail());
+        userToBeUpdated.setPassword(user.getPassword());
+        userToBeUpdated.setRoles(user.getRoles());
+        userDao.updateUser(userToBeUpdated);
     }
 
     @Override
@@ -56,13 +62,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User getUserByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userDao.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDao.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User doesn't exists");
         }

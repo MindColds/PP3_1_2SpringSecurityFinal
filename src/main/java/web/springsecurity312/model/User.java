@@ -1,4 +1,4 @@
-package web.bootstrap313.model;
+package web.springsecurity312.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,14 +21,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "firstName")
+    @Column(name = "name")
     private String name;
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "patronim")
+    private String patronim;
+    @Column(name = "surname")
+    private String surname;
     @Column(name = "age")
     private int age;
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
+    @Column(name = "username", unique = true)
+    private String username;
     @Column(name = "password")
     private String password;
 
@@ -56,7 +60,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -84,11 +88,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return age == user.age && name.equals(user.name) && lastName.equals(user.lastName) && email.equals(user.email);
+        return age == user.age && name.equals(user.name) && surname.equals(user.surname) && username.equals(user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lastName, age, email);
+        return Objects.hash(name, surname, age, username);
     }
 }

@@ -1,4 +1,4 @@
-package web.bootstrap313.model;
+package web.springsecurity312.model;
 
 
 import lombok.AllArgsConstructor;

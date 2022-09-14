@@ -1,4 +1,4 @@
-package web.bootstrap313.configs;
+package web.springsecurity312.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,27 +32,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .successHandler(successUserHandler)
-                .loginProcessingUrl("/login")
-                .usernameParameter("email")
-                .passwordParameter("password")
+                .formLogin().successHandler(successUserHandler)
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll()
-                .and()
-                .csrf().disable();
+                .permitAll();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(getBCryptPasswordEncoder());
     }
 
     @Bean
-    public static BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public static BCryptPasswordEncoder getBCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
 }

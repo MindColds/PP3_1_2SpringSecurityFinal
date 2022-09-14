@@ -1,7 +1,7 @@
-package web.bootstrap313.repository;
+package web.springsecurity312.repository;
 
 import org.springframework.stereotype.Repository;
-import web.bootstrap313.model.Role;
+import web.springsecurity312.model.Role;
 
 import java.util.Set;
 

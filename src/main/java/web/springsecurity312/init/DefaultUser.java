@@ -1,9 +1,11 @@
-package web.bootstrap313.model;
+package web.springsecurity312.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import web.bootstrap313.service.RoleService;
-import web.bootstrap313.service.UserService;
+import web.springsecurity312.model.Role;
+import web.springsecurity312.model.User;
+import web.springsecurity312.service.RoleService;
+import web.springsecurity312.service.UserService;
 
 import javax.annotation.PostConstruct;
 
@@ -26,12 +28,14 @@ public class DefaultUser {
         roleService.saveRole(userRole);
         User admin = new User();
         admin.setName("Admin");
-        admin.setLastName("Adminov");
+        admin.setPatronim("Sysopovich");
+        admin.setSurname("Adminov");
         admin.setAge(41);
         admin.setEmail("admin@mail.ru");
+        admin.setUsername("admin");
         admin.setPassword("admin");
         admin.addRole(adminRole);
         admin.addRole(userRole);
-        userService.add(admin);
+        userService.addUser(admin);
     }
 }
