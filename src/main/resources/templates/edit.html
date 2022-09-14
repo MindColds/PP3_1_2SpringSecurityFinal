@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT</title>
+</head>
+<body>
+<div th:align="center">
+    <h2>Edit User</h2>
+    <form th:method="PATCH" th:action="@{/admin/{id}/update(id=${user.getId()})}" th:object="${user}">
+        <table th:border="2" th:cellpadding="15">
+            <tr>
+                <td>ID</td>
+                <td><input type="number" th:field="*{id}" readonly/>
+                </td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" th:field="*{name}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Patronim</td>
+                <td><input type="text" th:field="*{patronim}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td><input type="text" th:field="*{surname}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="text" th:field="*{age}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" th:field="*{email}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" th:field="*{username}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" name="password"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td><input type="checkbox" name="nameRole"
+                           th:each="role: ${roles}"
+                           th:value="${role.name}"
+                           th:text="${role.name}">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="Edit User"/>
+    </form>
+    <br>
+    <form th:action="@{/admin}" method="get">
+        <input type="submit" value="Back"/>
+    </form>
+    <br>
+    <form th:action="@{/logout}" method="get">
+        <input type="submit" value="exit"/>
+    </form>
+</div>
+</body>
+</html>
